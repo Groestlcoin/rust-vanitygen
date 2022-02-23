@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bitcoin = { git = "https://github.com/rust-bitcoin/rust-bitcoin", features = ["rand", "use-serde"] }
+groestlcoin = { git = "https://github.com/Groestlcoin/rust-groestlcoin", branch = "vanitygen", features = ["rand", "use-serde"] }
 hex = "0.4"
 
 [patch.crates-io]

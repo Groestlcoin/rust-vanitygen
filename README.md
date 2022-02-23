@@ -1,6 +1,6 @@
-# A Rust Bitcoin Vanity Address Generator
+# A Rust Groestlcoin Vanity Address Generator
 
-This Bitcoin vanity address generator is a simple, not particular optimized or efficient program to produce vanity addresses.
+This Groestlcoin vanity address generator is a simple, not particular optimized or efficient program to produce vanity addresses.
 The main program is single threaded and simply generates random private keys and computes addresses for those keys until a particular prefix is met.
 To make better use of computing resources, a python script is provided which will run multiple instances of the vanity address generator.
 

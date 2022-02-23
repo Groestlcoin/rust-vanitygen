@@ -1,14 +1,14 @@
-extern crate bitcoin;
+extern crate groestlcoin;
 
-use bitcoin::hashes::Hash;
-use bitcoin::hashes::HashEngine;
-use bitcoin::network::constants::Network;
-use bitcoin::schnorr::PublicKey;
-use bitcoin::secp256k1::rand::rngs::OsRng;
-use bitcoin::secp256k1::Secp256k1;
-use bitcoin::util::address::Address;
-use bitcoin::util::taproot::TapTweakHash;
-use bitcoin::util::ecdsa::PrivateKey;
+use groestlcoin::hashes::Hash;
+use groestlcoin::hashes::HashEngine;
+use groestlcoin::network::constants::Network;
+use groestlcoin::schnorr::PublicKey;
+use groestlcoin::secp256k1::rand::rngs::OsRng;
+use groestlcoin::secp256k1::Secp256k1;
+use groestlcoin::util::address::Address;
+use groestlcoin::util::taproot::TapTweakHash;
+use groestlcoin::util::ecdsa::PrivateKey;
 
 use std::env;
 
@@ -21,12 +21,12 @@ fn main() {
     }
 
     let prefix = args[1].to_lowercase();
-    if prefix.len() <= 4 {
+    if prefix.len() <= 5 {
         println!("Prefix is too short");
         return;
     }
-    if prefix.get(0..4) != Some("bc1p") {
-        println!("Invalid prefix, must begin with bc1p");
+    if prefix.get(0..5) != Some("grs1p") {
+        println!("Invalid prefix, must begin with grs1p");
         return;
     }
 
@@ -63,10 +63,10 @@ fn main() {
 
         let output_pubkey = PublicKey::from_keypair(&secp, &output_seckey);
 
-        let addr = Address::p2tr(output_pubkey, Network::Bitcoin);
+        let addr = Address::p2tr(output_pubkey, Network::Groestlcoin);
 
         if addr.to_string().get(0..prefix.len()) == Some(&prefix) {
-            let internal_privkey = PrivateKey::from_slice(&internal_seckey.serialize_secret(), Network::Bitcoin).unwrap();
+            let internal_privkey = PrivateKey::from_slice(&internal_seckey.serialize_secret(), Network::Groestlcoin).unwrap();
             println!("internal_privkey: {}", internal_privkey.to_wif());
             println!("internal_pubkey: {}", internal_pubkey);
             println!("output_pubkey: {}", output_pubkey);
